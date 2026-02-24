@@ -9,15 +9,22 @@
 #sio-afb-badge {
     cursor: pointer;
     transition: transform 0.3s ease;
+    max-width: 100px;
+    /* Reduced from 150px+ */
+    height: auto;
 }
 
 #sio-afb-badge:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 #sio-afb-badge img {
     display: block;
-    max-width: 100%;
+    width: 60px;
+    /* Force discreet width */
+    height: auto;
+    border-radius: 8px;
+    /* Subtle rounding for the image itself */
 }
 
 #sio-afb-menu {
@@ -26,7 +33,7 @@
     margin-bottom: 15px;
     background-color: #05243a;
     border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     min-width: 220px;
     overflow: hidden;
     opacity: 0;
@@ -54,13 +61,13 @@
 
 #sio-afb-menu li.separator {
     height: 1px;
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     margin: 10px 15px;
 }
 
 #sio-afb-menu li.group-title {
     padding: 8px 15px 4px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     font-family: Arial, sans-serif;
     font-size: 12px;
     text-transform: uppercase;
