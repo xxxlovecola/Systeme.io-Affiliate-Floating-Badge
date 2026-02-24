@@ -204,27 +204,45 @@ function sio_afb_settings_page()
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            const baseUrl = '<?php echo SIO_AFB_URL; ?>';
             const languageSelect = document.getElementById('sio_afb_language');
             const badgeSourceRadios = document.querySelectorAll('input[name="sio_afb_settings[badge_source]"]');
             const builtInRow = document.getElementById('built-in-badge-row');
             const customRow = document.getElementById('custom-badge-row');
             const builtInSelect = document.getElementById('sio_afb_built_in_badge');
+            const customInput = document.getElementById('sio_afb_custom_badge_url');
+            const previewImg = document.getElementById('sio_afb_preview-img');
 
             const languageBadges = {
                 fr: { 'badge-fr-1.gif': 'Default Badge FR', 'badge-fr-2.gif': 'Minimal Badge FR' },
                 en: { 'badge-en-1.gif': 'Default Badge EN', 'badge-en-2.gif': 'Minimal Badge EN' }
             };
 
+            function updatePreview() {
+                const source = document.querySelector('input[name="sio_afb_settings[badge_source]"]:checked').value;
+                if (source === 'built-in') {
+                    previewImg.src = baseUrl + 'assets/images/' + builtInSelect.value;
+                } else {
+                    previewImg.src = customInput.value;
+                }
+            }
+
             languageSelect.addEventListener('change', function () {
                 const lang = this.value;
+                const currentVal = builtInSelect.value;
                 builtInSelect.innerHTML = '';
                 for (const [val, label] of Object.entries(languageBadges[lang])) {
                     const option = document.createElement('option');
                     option.value = val;
                     option.textContent = label;
+                    if (val === currentVal) option.selected = true;
                     builtInSelect.appendChild(option);
                 }
+                updatePreview();
             });
+
+            builtInSelect.addEventListener('change', updatePreview);
+            customInput.addEventListener('input', updatePreview);
 
             badgeSourceRadios.forEach(radio => {
                 radio.addEventListener('change', function () {
@@ -235,8 +253,12 @@ function sio_afb_settings_page()
                         builtInRow.style.display = 'none';
                         customRow.style.display = '';
                     }
+                    updatePreview();
                 });
             });
+
+            // Initial preview
+            updatePreview();
 
             // Media uploader logic (simplified)
             document.getElementById('sio_afb_upload_btn').addEventListener('click', function (e) {
