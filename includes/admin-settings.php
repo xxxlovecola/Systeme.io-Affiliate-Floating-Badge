@@ -121,6 +121,15 @@ function sio_afb_settings_page()
                     </td>
                 </tr>
 
+                <tr valign="top">
+                    <th scope="row"><?php _e( 'Badge Preview', 'systeme-io-affiliate-floating-badge' ); ?></th>
+                    <td>
+                        <div id="sio-afb-preview-container" style="background: #f0f0f0; border: 1px solid #ccc; padding: 20px; display: inline-block; border-radius: 10px;">
+                            <img id="sio-afb-preview-img" src="" style="max-width: 150px; display: block;" alt="Preview" />
+                        </div>
+                    </td>
+                </tr>
+
                 <tr valign="top" id="built-in-badge-row" <?php echo $settings['badge_source'] === 'custom' ? 'style="display:none;"' : ''; ?>>
                     <th scope="row">
                         <?php _e('Select Built-in Badge', 'systeme-io-affiliate-floating-badge'); ?>
@@ -147,7 +156,7 @@ function sio_afb_settings_page()
                         <?php _e('Custom Image URL', 'systeme-io-affiliate-floating-badge'); ?>
                     </th>
                     <td>
-                        <input type="text" name="sio_afb_settings[custom_badge_url]"
+                        <input type="text" name="sio_afb_settings[custom_badge_url]" id="sio_afb_custom_badge_url"
                             value="<?php echo esc_url($settings['custom_badge_url']); ?>" class="large-text" />
                         <button type="button" class="button" id="sio_afb_upload_btn">
                             <?php _e('Select Image', 'systeme-io-affiliate-floating-badge'); ?>
