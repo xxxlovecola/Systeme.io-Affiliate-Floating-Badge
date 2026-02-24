@@ -48,6 +48,7 @@ function sio_afb_activate()
         'h_offset' => 10,
         'v_offset' => 10,
         'mobile_breakpoint' => 900,
+        'display_on' => array('home', 'single', 'archive'),
     );
 
     if (false === get_option('sio_afb_settings')) {

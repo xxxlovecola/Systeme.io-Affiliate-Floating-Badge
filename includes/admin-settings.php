@@ -44,7 +44,8 @@ function sio_afb_sanitize_settings($input)
     $new_input['h_offset'] = intval($input['h_offset']);
     $new_input['v_offset'] = intval($input['v_offset']);
     $new_input['mobile_breakpoint'] = intval($input['mobile_breakpoint']);
-
+    $new_input['display_on'] = ( isset( $input['display_on'] ) && is_array( $input['display_on'] ) ) ? array_map( 'sanitize_text_field', $input['display_on'] ) : array();
+    
     return $new_input;
 }
 
@@ -188,6 +189,26 @@ function sio_afb_settings_page()
                     </td>
                 </tr>
 
+                <tr valign="top">
+                    <th scope="row"><?php _e( 'Display Visibility', 'systeme-io-affiliate-floating-badge' ); ?></th>
+                    <td>
+                        <fieldset>
+                            <label>
+                                <input type="checkbox" name="sio_afb_settings[display_on][]" value="home" <?php checked( in_array( 'home', $settings['display_on'] ?? [] ) ); ?> />
+                                <?php _e( 'Homepage', 'systeme-io-affiliate-floating-badge' ); ?>
+                            </label><br>
+                            <label>
+                                <input type="checkbox" name="sio_afb_settings[display_on][]" value="single" <?php checked( in_array( 'single', $settings['display_on'] ?? [] ) ); ?> />
+                                <?php _e( 'Single Posts / Pages', 'systeme-io-affiliate-floating-badge' ); ?>
+                            </label><br>
+                            <label>
+                                <input type="checkbox" name="sio_afb_settings[display_on][]" value="archive" <?php checked( in_array( 'archive', $settings['display_on'] ?? [] ) ); ?> />
+                                <?php _e( 'Archive Pages (Categories, Tags, etc.)', 'systeme-io-affiliate-floating-badge' ); ?>
+                            </label>
+                        </fieldset>
+                    </td>
+                </tr>
+                
                 <tr valign="top">
                     <th scope="row">
                         <?php _e('Mobile Breakpoint (px)', 'systeme-io-affiliate-floating-badge'); ?>

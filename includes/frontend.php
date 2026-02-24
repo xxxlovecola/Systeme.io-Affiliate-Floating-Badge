@@ -81,6 +81,25 @@ add_action('wp_enqueue_scripts', 'sio_afb_enqueue_assets');
  */
 function sio_afb_footer_container()
 {
-    echo '<div id="sio-afb-container"></div>';
+    $settings = get_option('sio_afb_settings');
+    $display_on = $settings['display_on'] ?? array('home', 'single', 'archive');
+
+    $should_display = false;
+
+    if (in_array('home', $display_on) && (is_front_page() || is_home())) {
+        $should_display = true;
+    }
+
+    if (in_array('single', $display_on) && is_singular()) {
+        $should_display = true;
+    }
+
+    if (in_array('archive', $display_on) && is_archive()) {
+        $should_display = true;
+    }
+
+    if ($should_display) {
+        echo '<div id="sio-afb-container"></div>';
+    }
 }
 add_action('wp_footer', 'sio_afb_footer_container');
