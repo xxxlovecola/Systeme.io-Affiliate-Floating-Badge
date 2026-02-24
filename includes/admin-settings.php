@@ -241,7 +241,7 @@ function sio_afb_settings_page()
             const customRow = document.getElementById('custom-badge-row');
             const builtInSelect = document.getElementById('sio_afb_built_in_badge');
             const customInput = document.getElementById('sio_afb_custom_badge_url');
-            const previewImg = document.getElementById('sio_afb_preview-img');
+            const previewImg = document.getElementById('sio-afb-preview-img');
 
             const languageBadges = {
                 fr: { 'badge-fr-1.gif': 'Default Badge FR', 'badge-fr-2.gif': 'Minimal Badge FR' },
@@ -249,11 +249,23 @@ function sio_afb_settings_page()
             };
 
             function updatePreview() {
+                if (!previewImg) return;
+                
                 const source = document.querySelector('input[name="sio_afb_settings[badge_source]"]:checked').value;
+                let src = '';
+                
                 if (source === 'built-in') {
-                    previewImg.src = baseUrl + 'assets/images/' + builtInSelect.value;
+                    src = baseUrl + 'assets/images/' + builtInSelect.value;
                 } else {
-                    previewImg.src = customInput.value;
+                    src = customInput.value;
+                }
+                
+                if (src) {
+                    previewImg.src = src;
+                    previewImg.style.display = 'block';
+                } else {
+                    previewImg.src = '';
+                    previewImg.style.display = 'none';
                 }
             }
 
