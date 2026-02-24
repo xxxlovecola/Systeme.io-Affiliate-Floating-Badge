@@ -140,8 +140,8 @@ function sio_afb_settings_page()
                             <?php
                             $lang = $settings['language'];
                             $badges = array(
-                                'fr' => array('badge-fr-1.gif' => 'Default Badge FR', 'badge-fr-2.gif' => 'Minimal Badge FR'),
-                                'en' => array('badge-en-1.gif' => 'Default Badge EN', 'badge-en-2.gif' => 'Minimal Badge EN')
+                                'fr' => array('badge-fr-1.png' => 'Default Badge FR', 'badge-fr-2.png' => 'Minimal Badge FR'),
+                                'en' => array('badge-en-1.png' => 'Default Badge EN', 'badge-en-2.png' => 'Minimal Badge EN')
                             );
                             foreach ($badges[$lang] as $val => $label) {
                                 echo '<option value="' . esc_attr($val) . '" ' . selected($settings['built_in_badge'], $val, false) . '>' . esc_html($label) . '</option>';
@@ -244,8 +244,8 @@ function sio_afb_settings_page()
             const previewImg = document.getElementById('sio-afb-preview-img');
 
             const languageBadges = {
-                fr: { 'badge-fr-1.gif': 'Default Badge FR', 'badge-fr-2.gif': 'Minimal Badge FR' },
-                en: { 'badge-en-1.gif': 'Default Badge EN', 'badge-en-2.gif': 'Minimal Badge EN' }
+                fr: { 'badge-fr-1.png': 'Default Badge FR', 'badge-fr-2.png': 'Minimal Badge FR' },
+                en: { 'badge-en-1.png': 'Default Badge EN', 'badge-en-2.png': 'Minimal Badge EN' }
             };
 
             function updatePreview() {
@@ -255,10 +255,13 @@ function sio_afb_settings_page()
                 let src = '';
                 
                 if (source === 'built-in') {
+                    // SIO_AFB_URL already has a trailing slash
                     src = baseUrl + 'assets/images/' + builtInSelect.value;
                 } else {
                     src = customInput.value;
                 }
+                
+                console.log('SIO AFB - Updating Preview to:', src);
                 
                 if (src) {
                     previewImg.src = src;
