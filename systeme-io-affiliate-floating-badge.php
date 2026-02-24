@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Systeme.io Affiliate Floating Badge
  * Description: Displays a floating badge with a drop-up menu to promote Systeme.io affiliate offers.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: James
  * License: GPL2
  * Text Domain: systeme-io-affiliate-floating-badge
@@ -13,7 +13,7 @@ if (!defined('WPINC')) {
 }
 
 // Define constants
-define('SIO_AFB_VERSION', '1.0.0');
+define('SIO_AFB_VERSION', '1.0.1');
 define('SIO_AFB_PATH', plugin_dir_path(__FILE__));
 define('SIO_AFB_URL', plugin_dir_url(__FILE__));
 
