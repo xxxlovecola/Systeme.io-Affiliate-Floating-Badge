@@ -9,14 +9,12 @@ if (!defined('WPINC')) {
  */
 function sio_afb_add_admin_menu()
 {
-    add_menu_page(
+    add_options_page(
         __('Systeme.io Badge', 'systeme-io-affiliate-floating-badge'),
         __('Systeme.io Badge', 'systeme-io-affiliate-floating-badge'),
         'manage_options',
         'systeme-io-badge',
-        'sio_afb_settings_page',
-        'dashicons-external',
-        100
+        'sio_afb_settings_page'
     );
 }
 add_action('admin_menu', 'sio_afb_add_admin_menu');
